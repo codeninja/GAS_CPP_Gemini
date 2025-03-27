@@ -8,6 +8,18 @@ public class GAS_CPP_Gemini : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput" });
-	}
+        // Added GameplayAbilities, GameplayTags, and GameplayTasks for GAS support
+        PublicDependencyModuleNames.AddRange(new string[] {
+            "Core",
+            "CoreUObject",
+            "Engine",
+            "InputCore",
+            "EnhancedInput",
+            "GameplayAbilities",
+            "GameplayTags",
+            "GameplayTasks"
+        });
+
+        PrivateDependencyModuleNames.AddRange(new string[] { });
+    }
 }
