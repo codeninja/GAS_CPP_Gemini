@@ -69,10 +69,9 @@ void AGAS_CPP_GeminiCharacter::BeginPlay()
 
 	if (IsLocallyControlled())
 	{
-		static ConstructorHelpers::FClassFinder<UUserWidget> DebugWidgetClass(TEXT("/Game/UI/WBP_AttributeDebugHUD"));
-		if (DebugWidgetClass.Succeeded())
+		if (AttributeDebugWidgetClass)
 		{
-			AttributeDebugWidget = CreateWidget<UGeminiAttributeDebugWidget>(GetWorld(), DebugWidgetClass.Class);
+			AttributeDebugWidget = CreateWidget<UGeminiAttributeDebugWidget>(GetWorld(), AttributeDebugWidgetClass);
 			if (AttributeDebugWidget)
 			{
 				AttributeDebugWidget->AddToViewport();
