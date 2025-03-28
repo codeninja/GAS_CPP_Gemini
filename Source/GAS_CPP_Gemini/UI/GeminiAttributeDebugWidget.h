@@ -19,5 +19,6 @@ public:
 	FString GetPower() const;
 
 protected:
+	virtual void NativeConstruct() override;
 	AGAS_CPP_GeminiCharacter* GetGeminiCharacter() const;
 };

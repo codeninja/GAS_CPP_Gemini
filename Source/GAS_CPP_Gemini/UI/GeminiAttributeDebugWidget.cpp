@@ -3,6 +3,26 @@
 #include "../Attributes/GeminiAttributeSet.h"
 #include "AbilitySystemComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/TextBlock.h"
+#include "Components/VerticalBox.h"
+#include "Components/VerticalBoxSlot.h"
+#include "Blueprint/WidgetTree.h"
+
+void UGeminiAttributeDebugWidget::NativeConstruct()
+{
+	Super::NativeConstruct();
+
+	UVerticalBox* RootBox = WidgetTree->ConstructWidget<UVerticalBox>(UVerticalBox::StaticClass(), TEXT("RootBox"));
+	WidgetTree->RootWidget = RootBox;
+
+	UTextBlock* HealthText = WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass(), TEXT("HealthText"));
+	HealthText->SetText(FText::FromString(GetHealth()));
+	RootBox->AddChildToVerticalBox(HealthText);
+
+	UTextBlock* PowerText = WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass(), TEXT("PowerText"));
+	PowerText->SetText(FText::FromString(GetPower()));
+	RootBox->AddChildToVerticalBox(PowerText);
+}
 
 AGAS_CPP_GeminiCharacter* UGeminiAttributeDebugWidget::GetGeminiCharacter() const
 {
