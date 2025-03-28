@@ -6,7 +6,7 @@
 
 class AGAS_CPP_GeminiCharacter;
 
-UCLASS()
+UCLASS(Blueprintable)
 class GAS_CPP_GEMINI_API UGeminiAttributeDebugWidget : public UUserWidget
 {
 	GENERATED_BODY()
