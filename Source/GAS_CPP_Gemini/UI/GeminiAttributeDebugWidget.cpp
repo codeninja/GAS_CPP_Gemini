@@ -1,4 +1,4 @@
-#include "UI/GeminiAttributeDebugWidget.h"
+#include "GeminiAttributeDebugWidget.h"
 #include "GAS_CPP_GeminiCharacter.h"
 #include "Attributes/GeminiAttributeSet.h"
 #include "AbilitySystemComponent.h"
