@@ -82,5 +82,8 @@ private:
 
 	UPROPERTY()
 	const UGeminiAttributeSet* AttributeSet;
+private:
+	UPROPERTY()
+	class UGeminiAttributeDebugWidget* AttributeDebugWidget;
 };
 

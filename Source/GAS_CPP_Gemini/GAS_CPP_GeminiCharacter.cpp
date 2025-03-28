@@ -11,6 +11,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "Blueprint/UserWidget.h"
+#include "UI/GeminiAttributeDebugWidget.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -71,10 +72,10 @@ void AGAS_CPP_GeminiCharacter::BeginPlay()
 		static ConstructorHelpers::FClassFinder<UUserWidget> DebugWidgetClass(TEXT("/Game/UI/WBP_AttributeDebugHUD"));
 		if (DebugWidgetClass.Succeeded())
 		{
-			UUserWidget* DebugWidget = CreateWidget<UUserWidget>(GetWorld(), DebugWidgetClass.Class);
-			if (DebugWidget)
+			AttributeDebugWidget = CreateWidget<UGeminiAttributeDebugWidget>(GetWorld(), DebugWidgetClass.Class);
+			if (AttributeDebugWidget)
 			{
-				DebugWidget->AddToViewport();
+				AttributeDebugWidget->AddToViewport();
 			}
 		}
 	}
