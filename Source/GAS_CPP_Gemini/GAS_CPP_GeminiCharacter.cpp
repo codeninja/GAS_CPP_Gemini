@@ -71,7 +71,7 @@ void AGAS_CPP_GeminiCharacter::BeginPlay()
 	{
 		if (AttributeDebugWidgetClass)
 		{
-			AttributeDebugWidget = CreateWidget<UGeminiAttributeDebugWidget>(GetWorld(), AttributeDebugWidgetClass);
+			UGeminiAttributeDebugWidget* AttributeDebugWidget = CreateWidget<UGeminiAttributeDebugWidget>(GetWorld(), AttributeDebugWidgetClass);
 			if (AttributeDebugWidget)
 			{
 				AttributeDebugWidget->AddToViewport();
