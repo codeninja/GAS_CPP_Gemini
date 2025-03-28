@@ -18,6 +18,13 @@ DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
 AGAS_CPP_GeminiCharacter::AGAS_CPP_GeminiCharacter()
 {
+	// GAS setup
+	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
+
+	AttributeSet = CreateDefaultSubobject<UGeminiAttributeSet>(TEXT("AttributeSet"));
+
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 		

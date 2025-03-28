@@ -5,6 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
+#include "AbilitySystemInterface.h"
+#include "AbilitySystemComponent.h"
+#include "Attributes/GeminiAttributeSet.h"
 #include "GAS_CPP_GeminiCharacter.generated.h"
 
 class USpringArmComponent;
@@ -16,7 +19,7 @@ struct FInputActionValue;
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
 UCLASS(config=Game)
-class AGAS_CPP_GeminiCharacter : public ACharacter
+class AGAS_CPP_GeminiCharacter : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -68,5 +71,15 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+public:
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override { return AbilitySystemComponent; }
+	const UGeminiAttributeSet* GetAttributeSet() const { return AttributeSet; }
+
+private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Abilities", meta = (AllowPrivateAccess = "true"))
+	UAbilitySystemComponent* AbilitySystemComponent;
+
+	UPROPERTY()
+	const UGeminiAttributeSet* AttributeSet;
 };
 
