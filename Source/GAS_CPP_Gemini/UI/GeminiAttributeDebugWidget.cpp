@@ -1,5 +1,5 @@
 #include "GeminiAttributeDebugWidget.h"
-#include "GAS_CPP_GeminiCharacter.h"
+#include "GAS_CPP_Gemini/GAS_CPP_GeminiCharacter.h"
 #include "Attributes/GeminiAttributeSet.h"
 #include "AbilitySystemComponent.h"
 #include "Kismet/GameplayStatics.h"
