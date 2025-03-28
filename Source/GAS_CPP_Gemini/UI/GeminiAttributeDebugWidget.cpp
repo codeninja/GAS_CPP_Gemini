@@ -19,10 +19,14 @@ void UGeminiAttributeDebugWidget::NativeConstruct()
 
 	HealthText = WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass(), TEXT("HealthText"));
 	HealthText->SetText(FText::FromString(GetHealth()));
+	HealthText->SetColorAndOpacity(FSlateColor(FLinearColor::Red));
+	HealthText->Font.Size = 24;
 	RootBox->AddChildToVerticalBox(HealthText);
 
 	PowerText = WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass(), TEXT("PowerText"));
 	PowerText->SetText(FText::FromString(GetPower()));
+	PowerText->SetColorAndOpacity(FSlateColor(FLinearColor::Blue));
+	PowerText->Font.Size = 24;
 	RootBox->AddChildToVerticalBox(PowerText);
 }
 
