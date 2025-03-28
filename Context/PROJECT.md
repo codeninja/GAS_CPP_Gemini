@@ -21,7 +21,7 @@ Analysis of Specific Areas:
 
     Core Gameplay Loop:
         Your Plan: Story-driven campaign through chapters -> Central hub per chapter (like PoE towns) -> Explore connected, instanced, randomized zones (like GW2 maps with events/mini-bosses) -> Instanced story missions -> Chapter Boss fight -> Progress to next chapter/hub.
-        Analysis: This is a well-defined and proven structure, blending linear story progression with open-zone exploration and replayability (due to randomization). It effectively combines the PoE act structure with the GW2 map style. The "seamless mix" seems achievable within this framework – explore the zone, then enter an instance marker for a story mission or queue for group content from the hub.
+        Analysis: This is a well-defined and proven structure, blending linear story progression with open-zone exploration and replayability (due to randomization). It effectively combines the PoE act structure with the GW2 map style. The "seamless mix" seems achievable within this framework ï¿½ explore the zone, then enter an instance marker for a story mission or queue for group content from the hub.
 
     Combat System:
         Your Plan: Action-based WASD movement, dynamic "if you're in the area, you get hit" targeting, active dodge/movement skills crucial, meaningful encounters with a "swarm -> overcome -> victory" pacing, rewarding player skill over gear.
