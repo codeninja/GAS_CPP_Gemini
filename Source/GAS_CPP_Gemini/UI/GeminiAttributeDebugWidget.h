@@ -12,10 +12,10 @@ class GAS_CPP_GEMINI_API UGeminiAttributeDebugWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	UFUNCTION(BlueprintPure, Category = "Attributes")
 	FString GetHealth() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	UFUNCTION(BlueprintPure, Category = "Attributes")
 	FString GetPower() const;
 
 protected:
