@@ -22,7 +22,8 @@ public class GAS_CPP_Gemini : ModuleRules
 
         PrivateDependencyModuleNames.AddRange(new string[] { });
         PublicIncludePaths.AddRange(new string[] {
-            "GAS_CPP_Gemini/UI"
+            "GAS_CPP_Gemini/UI",
+            "GAS_CPP_Gemini/Attributes"
         });
     }
 }
