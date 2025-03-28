@@ -15,11 +15,11 @@ void UGeminiAttributeDebugWidget::NativeConstruct()
 	UVerticalBox* RootBox = WidgetTree->ConstructWidget<UVerticalBox>(UVerticalBox::StaticClass(), TEXT("RootBox"));
 	WidgetTree->RootWidget = RootBox;
 
-	UTextBlock* HealthText = WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass(), TEXT("HealthText"));
+	HealthText = WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass(), TEXT("HealthText"));
 	HealthText->SetText(FText::FromString(GetHealth()));
 	RootBox->AddChildToVerticalBox(HealthText);
 
-	UTextBlock* PowerText = WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass(), TEXT("PowerText"));
+	PowerText = WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass(), TEXT("PowerText"));
 	PowerText->SetText(FText::FromString(GetPower()));
 	RootBox->AddChildToVerticalBox(PowerText);
 }

@@ -21,4 +21,10 @@ public:
 protected:
 	virtual void NativeConstruct() override;
 	AGAS_CPP_GeminiCharacter* GetGeminiCharacter() const;
+
+	UPROPERTY()
+	class UTextBlock* HealthText;
+
+	UPROPERTY()
+	class UTextBlock* PowerText;
 };
