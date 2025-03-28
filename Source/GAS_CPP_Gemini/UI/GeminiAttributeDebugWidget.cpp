@@ -12,6 +12,8 @@ void UGeminiAttributeDebugWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
+	UE_LOG(LogTemp, Warning, TEXT("UGeminiAttributeDebugWidget::NativeConstruct called"));
+
 	UVerticalBox* RootBox = WidgetTree->ConstructWidget<UVerticalBox>(UVerticalBox::StaticClass(), TEXT("RootBox"));
 	WidgetTree->RootWidget = RootBox;
 
