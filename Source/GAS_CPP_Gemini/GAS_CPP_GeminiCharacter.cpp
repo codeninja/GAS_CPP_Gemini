@@ -71,10 +71,17 @@ void AGAS_CPP_GeminiCharacter::BeginPlay()
 	{
 		if (AttributeDebugWidgetClass)
 		{
+			UE_LOG(LogTemp, Warning, TEXT("AttributeDebugWidgetClass: %s"), *AttributeDebugWidgetClass->GetName());
+
 			AttributeDebugWidget = CreateWidget<UGeminiAttributeDebugWidget>(GetWorld(), AttributeDebugWidgetClass);
 			if (AttributeDebugWidget)
 			{
+				UE_LOG(LogTemp, Warning, TEXT("AttributeDebugWidget created: %s"), *AttributeDebugWidget->GetName());
 				AttributeDebugWidget->AddToViewport();
+			}
+			else
+			{
+				UE_LOG(LogTemp, Error, TEXT("Failed to create AttributeDebugWidget"));
 			}
 		}
 	}
