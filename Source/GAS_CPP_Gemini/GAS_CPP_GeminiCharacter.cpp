@@ -66,24 +66,27 @@ AGAS_CPP_GeminiCharacter::AGAS_CPP_GeminiCharacter()
 void AGAS_CPP_GeminiCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	UE_LOG(LogTemp, Warning, TEXT("BeginPlay:"));
 
-	if (IsLocallyControlled())
+
+	if (AttributeDebugWidgetClass)
 	{
-		if (AttributeDebugWidgetClass)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("AttributeDebugWidgetClass: %s"), *AttributeDebugWidgetClass->GetName());
+		UE_LOG(LogTemp, Warning, TEXT("AttributeDebugWidgetClass: %s"), *AttributeDebugWidgetClass->GetName());
 
-			AttributeDebugWidget = CreateWidget<UGeminiAttributeDebugWidget>(GetWorld(), AttributeDebugWidgetClass);
-			if (AttributeDebugWidget)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("AttributeDebugWidget created: %s"), *AttributeDebugWidget->GetName());
-				AttributeDebugWidget->AddToViewport();
-			}
-			else
-			{
-				UE_LOG(LogTemp, Error, TEXT("Failed to create AttributeDebugWidget"));
-			}
+		AttributeDebugWidget = CreateWidget<UGeminiAttributeDebugWidget>(GetWorld(), AttributeDebugWidgetClass);
+		if (AttributeDebugWidget)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("AttributeDebugWidget created: %s"), *AttributeDebugWidget->GetName());
+			AttributeDebugWidget->AddToViewport();
 		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("Failed to create AttributeDebugWidget"));
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("AttributeDebugWidgetClass is not set!"));
 	}
 }
 
