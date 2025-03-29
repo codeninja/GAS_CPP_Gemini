@@ -82,6 +82,7 @@ private:
 
 	UPROPERTY()
 	const UGeminiAttributeSet* AttributeSet;
+
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<class UGeminiAttributeDebugWidget> AttributeDebugWidgetClass;
