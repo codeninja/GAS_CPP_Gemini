@@ -75,6 +75,7 @@ public:
 public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override { return AbilitySystemComponent; }
 	const UGeminiAttributeSet* GetAttributeSet() const { return AttributeSet; }
+	float GetSpirit() const;
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Abilities", meta = (AllowPrivateAccess = "true"))

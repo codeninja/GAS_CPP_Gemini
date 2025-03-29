@@ -64,6 +64,11 @@ AGAS_CPP_GeminiCharacter::AGAS_CPP_GeminiCharacter()
 
 }
 
+float AGAS_CPP_GeminiCharacter::GetSpirit() const
+{
+	return AttributeSet ? AttributeSet->GetSpirit() : 0.f;
+}
+
 void AGAS_CPP_GeminiCharacter::BeginPlay()
 {
 	Super::BeginPlay();
