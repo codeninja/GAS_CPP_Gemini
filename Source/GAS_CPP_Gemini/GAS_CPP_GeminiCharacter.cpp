@@ -63,7 +63,7 @@ AGAS_CPP_GeminiCharacter::AGAS_CPP_GeminiCharacter()
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 
 	// Set default UI widget class
-	static ConstructorHelpers::FClassFinder<UGeminiAttributeDebugWidget> WidgetClassFinder(TEXT("/Game/UI/WBP_AttributeDebug"));
+	static ConstructorHelpers::FClassFinder<UGeminiAttributeDebugWidget> WidgetClassFinder(TEXT("/Game/UI/WBP_AttributeDebugWidget"));
 	if (WidgetClassFinder.Succeeded())
 	{
 		AttributeDebugWidgetClass = WidgetClassFinder.Class;
