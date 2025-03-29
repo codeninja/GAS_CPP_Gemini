@@ -62,6 +62,12 @@ AGAS_CPP_GeminiCharacter::AGAS_CPP_GeminiCharacter()
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 
+	// Set default widget class for attribute debug UI
+	static ConstructorHelpers::FClassFinder<UGeminiAttributeDebugWidget> WidgetBPClass(TEXT("/Game/UI/WBP_AttributeDebugWidget"));
+	if (WidgetBPClass.Succeeded())
+	{
+		AttributeDebugWidgetClass = WidgetBPClass.Class;
+	}
 }
 
 float AGAS_CPP_GeminiCharacter::GetSpirit() const
@@ -75,19 +81,6 @@ void AGAS_CPP_GeminiCharacter::BeginPlay()
 	UE_LOG(LogTemp, Warning, TEXT("BeginPlay:"));
 
 
-	if (!AttributeDebugWidgetClass)
-	{
-		static ConstructorHelpers::FClassFinder<UGeminiAttributeDebugWidget> WidgetBPClass(TEXT("/Game/UI/WBP_AttributeDebugWidget"));
-		if (WidgetBPClass.Succeeded())
-		{
-			AttributeDebugWidgetClass = WidgetBPClass.Class;
-			UE_LOG(LogTemp, Warning, TEXT("AttributeDebugWidgetClass dynamically set to: %s"), *AttributeDebugWidgetClass->GetName());
-		}
-		else
-		{
-			UE_LOG(LogTemp, Error, TEXT("Failed to find WBP_AttributeDebugWidget class at runtime!"));
-		}
-	}
 
 	if (AttributeDebugWidgetClass)
 	{
