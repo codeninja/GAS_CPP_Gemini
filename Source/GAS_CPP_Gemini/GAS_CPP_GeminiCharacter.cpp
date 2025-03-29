@@ -80,6 +80,20 @@ void AGAS_CPP_GeminiCharacter::BeginPlay()
 	UE_LOG(LogTemp, Warning, TEXT("BeginPlay:"));
 
 
+	if (!AttributeDebugWidgetClass)
+	{
+		static ConstructorHelpers::FClassFinder<UGeminiAttributeDebugWidget> WidgetBPClass(TEXT("/Game/UI/WBP_AttributeDebugWidget"));
+		if (WidgetBPClass.Succeeded())
+		{
+			AttributeDebugWidgetClass = WidgetBPClass.Class;
+			UE_LOG(LogTemp, Warning, TEXT("AttributeDebugWidgetClass dynamically set to: %s"), *AttributeDebugWidgetClass->GetName());
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("Failed to find WBP_AttributeDebugWidget class at runtime!"));
+		}
+	}
+
 	if (AttributeDebugWidgetClass)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("AttributeDebugWidgetClass: %s"), *AttributeDebugWidgetClass->GetName());
