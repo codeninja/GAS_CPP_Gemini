@@ -1,35 +1,45 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "GAS_CPP_GeminiCharacter.h"
+
+// Engine headers
 #include "Engine/LocalPlayer.h"
+#include "GameFramework/Controller.h"
+
+// Component headers
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "GameFramework/Controller.h"
+
+// Input system
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
-#include "Blueprint/UserWidget.h"
+
+// UI and project-specific headers
 #include "UI/GeminiAttributeDebugWidget.h"
+#include "Blueprint/UserWidget.h" // Used for CreateWidget
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
 //////////////////////////////////////////////////////////////////////////
-// AGAS_CPP_GeminiCharacter
+// Constructor & Initialization
+//////////////////////////////////////////////////////////////////////////
 
 AGAS_CPP_GeminiCharacter::AGAS_CPP_GeminiCharacter()
 {
-	// GAS setup
+	// === GAS Setup ===
 	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 	AbilitySystemComponent->SetIsReplicated(true);
 	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
 
 	AttributeSet = CreateDefaultSubobject<UGeminiAttributeSet>(TEXT("AttributeSet"));
 
-	// Set size for collision capsule
+	// === Collision ===
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 		
+	// === Movement ===
 	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
@@ -48,6 +58,7 @@ AGAS_CPP_GeminiCharacter::AGAS_CPP_GeminiCharacter()
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 	GetCharacterMovement()->BrakingDecelerationFalling = 1500.0f;
 
+	// === Camera ===
 	// Create a camera boom (pulls in towards the player if there is a collision)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
@@ -62,6 +73,7 @@ AGAS_CPP_GeminiCharacter::AGAS_CPP_GeminiCharacter()
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 
+	// === UI ===
 	// Set default widget class for attribute debug UI
 	static ConstructorHelpers::FClassFinder<UGeminiAttributeDebugWidget> WidgetBPClass(TEXT("/Game/UI/WBP_AttributeDebugWidget"));
 	if (WidgetBPClass.Succeeded())
@@ -71,18 +83,16 @@ AGAS_CPP_GeminiCharacter::AGAS_CPP_GeminiCharacter()
 	}
 }
 
-float AGAS_CPP_GeminiCharacter::GetSpirit() const
-{
-	return AttributeSet ? AttributeSet->GetSpirit() : 0.f;
-}
+//////////////////////////////////////////////////////////////////////////
+// BeginPlay
+//////////////////////////////////////////////////////////////////////////
 
 void AGAS_CPP_GeminiCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("BeginPlay:"));
 
-
-
+	// Create and add the debug widget to the viewport
 	if (AttributeDebugWidgetClass)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("AttributeDebugWidgetClass: %s"), *AttributeDebugWidgetClass->GetName());
@@ -105,21 +115,17 @@ void AGAS_CPP_GeminiCharacter::BeginPlay()
 }
 
 //////////////////////////////////////////////////////////////////////////
-// Input
+// GAS Accessors
+//////////////////////////////////////////////////////////////////////////
 
-void AGAS_CPP_GeminiCharacter::NotifyControllerChanged()
+float AGAS_CPP_GeminiCharacter::GetSpirit() const
 {
-	Super::NotifyControllerChanged();
-
-	// Add Input Mapping Context
-	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
-	{
-		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
-		{
-			Subsystem->AddMappingContext(DefaultMappingContext, 0);
-		}
-	}
+	return AttributeSet ? AttributeSet->GetSpirit() : 0.f;
 }
+
+//////////////////////////////////////////////////////////////////////////
+// Input Setup
+//////////////////////////////////////////////////////////////////////////
 
 void AGAS_CPP_GeminiCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -141,6 +147,24 @@ void AGAS_CPP_GeminiCharacter::SetupPlayerInputComponent(UInputComponent* Player
 		UE_LOG(LogTemplateCharacter, Error, TEXT("'%s' Failed to find an Enhanced Input component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
 	}
 }
+
+void AGAS_CPP_GeminiCharacter::NotifyControllerChanged()
+{
+	Super::NotifyControllerChanged();
+
+	// Add Input Mapping Context
+	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(DefaultMappingContext, 0);
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////
+// Input Handlers
+//////////////////////////////////////////////////////////////////////////
 
 void AGAS_CPP_GeminiCharacter::Move(const FInputActionValue& Value)
 {
