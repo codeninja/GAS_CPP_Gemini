@@ -58,3 +58,15 @@ FString UGeminiAttributeDebugWidget::GetPower() const
 	}
 	return TEXT("Power: N/A");
 }
+
+FString UGeminiAttributeDebugWidget::GetSpirit() const
+{
+	if (const AGAS_CPP_GeminiCharacter* Char = GetGeminiCharacter())
+	{
+		if (const UGeminiAttributeSet* Attr = Char->GetAttributeSet())
+		{
+			return FString::Printf(TEXT("Spirit: %.1f"), Attr->GetSpirit());
+		}
+	}
+	return TEXT("Spirit: N/A");
+}

@@ -11,7 +11,7 @@
 	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
-UCLASS()
+UCLASS(Blueprintable)
 class GAS_CPP_GEMINI_API UGeminiAttributeSet : public UAttributeSet
 {
 	GENERATED_BODY()
