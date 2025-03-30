@@ -66,6 +66,7 @@ AGAS_CPP_GeminiCharacter::AGAS_CPP_GeminiCharacter()
 	static ConstructorHelpers::FClassFinder<UGeminiAttributeDebugWidget> WidgetBPClass(TEXT("/Game/UI/WBP_AttributeDebugWidget"));
 	if (WidgetBPClass.Succeeded())
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Found AttributeDebugWidget Blueprint: %s"), *WidgetBPClass.Class->GetName());
 		AttributeDebugWidgetClass = WidgetBPClass.Class;
 	}
 }
